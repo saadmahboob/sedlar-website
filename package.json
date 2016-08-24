@@ -19,6 +19,7 @@
   "homepage": "https://github.com/TSedlar/sedlar-website",
   "devDependencies": {
     "concurrently": "^2.2.0",
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
     "run-sequence": "^1.2.2",
