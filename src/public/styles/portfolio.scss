@@ -1,0 +1,202 @@
+@import url("http://fonts.googleapis.com/css?family=Raleway:200,700&subset=latin,latin-ext");
+@import url("http://fonts.googleapis.com/css?family=Roboto:300");
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 1.7857;
+  letter-spacing: 0.075em;
+  color: #333333;
+  background-color: #FFFFFF;
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+a { 
+  color: #000000;
+}
+
+@mixin animate-hover ($color) {
+  color: $color;
+  outline: 0;
+  border: 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s ease-out;
+  -moz-transition: color 0.2s ease-out;
+  -ms-transition: color 0.2s ease-out;
+  -o-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
+}
+
+.hover-anim {
+  @include animate-hover(#9F81F7)
+}
+
+a:hover {
+  @extend .hover-anim
+}
+
+.shield {
+  color: #F2F2F2;
+}
+
+.shield:hover {
+  @include animate-hover(#FFFFFF)
+}
+
+.header {
+  margin: 0;
+  padding: 0;
+  width: 101%;
+  height: 250px;
+  overflow: hidden;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+.avatar-container {
+  padding: 20px;
+  width: auto;
+  margin-top: -110px;
+  text-align: center;
+}
+
+#avatar {
+  width: 160px;
+  height: 160px;
+  -webkit-border-radius: 80px;
+  border-radius: 80px;
+  border: 4px solid #FFFFFF;
+}
+
+.personal-info {
+  text-align: center;
+}
+
+p.name {
+  font-size: 24px;
+}
+
+p.label-group {
+  margin-top: -8px;
+}
+
+#preloader {
+  background: #FFFFFF;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+}
+
+p {
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6, p.name, label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.label {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.row-centered {
+  text-align: center;
+}
+
+.col-centered {
+  display: inline-block;
+  float: none;
+  text-align: left;
+  margin-right: -4px;
+}
+
+.section-title {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.section-title h1 {
+  margin-top: 5px;
+}
+
+.divider-vertical {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 18px;
+  height: 1px;
+  background-color: rgba(200, 200, 200, 0.5);
+}
+
+.content {
+  background-color: #FFFFFF;
+}
+
+.repository {
+  margin-top: 17px;
+}
+
+.repository-data {
+  background-color: #F2F2F2;
+  border-radius: 8px;
+  padding-right: 20px;
+}
+
+.repository-stats {
+  margin-top: 15px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.repository h2 {
+  font-size: 12px;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+.repository h4 {
+  font-size: 12px;
+  margin-top: 3px;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.repository h2 i {
+  margin-right: 5px;
+}
+
+.repository-stats p {
+  font-family: 'Roboto', Arial, serif;
+  font-size: 11px;
+  padding-left: 0;
+  padding-right: 0;
+  font-weight: 350;
+  text-indent: 0px;
+}
+
+.repository-description {
+  margin-left: 0px;
+  font-size: 12px;
+}

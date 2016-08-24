@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sedlar Website</title>
+    <link rel="stylesheet" href="/styles/bootstrap-theme.min.css">
+  </head>
+  <body>
+    <div id="preloader">
+      <div id="pre-status"></div>
+    </div>
+    <div id="cover" class="header"></div>
+    <div class="avatar-container">
+      <img id="avatar" />
+    </div>
+    <div class="personal-info">
+      <p class="name">Tyler Sedlar</p>
+      <p class="label-group">
+        <a class="shield label label-success" href="mailto:sedlarizona@gmail.com" target="_top">E-Mail</a>
+        <a class="shield label label-info" href="http://linkedin.com/in/tsedlar">LinkedIn</a>
+        <a class="shield label label-default" href="https://github.com/TSedlar">GitHub</a>
+      </p>
+      <div class="divider-vertical" style="margin-top: 35px"></div>
+    </div>
+    <div *ngFor="let organization of organizations" class="row row-centered">
+      <div class="col-md-12">
+        <div class="container">
+          <h1>{{ organization.name }}</h1>
+          <div class="divider-vertical"></div>
+          <div class="row row-centered">
+            <div *ngFor="let repo of organization.repos" class="col-sm-6 col-md-4 col-centered repository">
+              <div class="col-md-12">
+                <div class="row repository-data">
+                  <div class="col-xs-8 col-md-8">
+                    <h2>
+                      <a [href]="repo.html_url">{{ repo.name }}</a>
+                    </h2>
+                    <p class="repository-description">
+                      <i>{{ repo.description }}</i>
+                    </p>
+                  </div>
+                  <div class="col-xs-4 col-md-4" style="padding: 0;">
+                    <div class="row repository-stats">
+                      <p class="col-xs-12 col-md-12" style="margin-left: 1px">
+                        <i class="fa fa-pencil"></i> {{ repo.updated_at }}
+                      </p>
+                      <p class="col-xs-12 col-md-12">
+                        <i class="fa fa-tags"></i> {{ repo.language }}
+                      </p>
+                      <p class="col-xs-12 col-md-12">
+                        <i class="fa fa-star"></i> {{ repo.stargazers_count }} {{ repo.star_label }}
+                      </p>
+                      <p class="col-xs-12 col-md-12">
+                        <i class="fa fa-chain"></i> {{ repo.forks_count }} {{ repo.fork_label }}
+                      </p>
+                      <p class="col-xs-12 col-md-12" style="margin-left: -1px;">
+                        <i class="fa fa-users"></i> {{ repo.contributor_count }} {{ repo.contributor_label }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="divider-vertical"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="section-title">
+          <h1>Work Timeline</h1>
+      </div>
+      <div class="divider-vertical"></div>
+      <div id="timeline">
+        <div *ngFor="let job of jobs; let idx = index" class="timeline-item">
+          <div [class]="idx % 2 == 0 ? 'timeline-content' : 'timeline-content right'">
+            <div class="timeline-icon" [style.background-color]="job.color">
+              <img [src]="job.icon" />
+            </div>
+            <h2>{{ job.name }}</h2>
+            <ul class="timeline-list">
+              <p class="timeline-detail">
+                <small><i class="fa fa-clock-o"> {{ job.timeframe }}</i></small>
+              </p>
+              <p class="timeline-detail">
+                <small><i class="fa fa-book"> {{ job.title }}</i></small>
+              </p>
+              <li *ngFor="let task of job.tasks">
+                <!-- if task has info -->
+                <a *ngIf="task.info" [href]="task.link">{{ task.info }}</a>
+                <span *ngIf="task.info && task.contribs && task.contribs.length > 0">
+                  <span> with</span>
+                  <em *ngFor="let contributor of task.contribs; let cIdx = index">
+                    <span *ngIf="cIdx > 0 && task.contribs.length > 2">&</span>
+                    <a [href]="contributor.profile"> {{ contributor.name }}</a>
+                  </em>
+                </span>
+                <!-- else -->
+                <span *ngIf="!task.info">{{ task }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
