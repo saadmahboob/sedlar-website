@@ -51,7 +51,7 @@ export class PortfolioComponent {
             info: 'Created an open source Java agent for viewing method argument call order'
           },
           {
-            linke: 'https://github.com/TSedlar/github-scraper',
+            link: 'https://github.com/TSedlar/github-scraper',
             info: 'Created an NPM module used for scraping GitHub user information'
           }
         ]
