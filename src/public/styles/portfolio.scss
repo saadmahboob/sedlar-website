@@ -57,6 +57,7 @@ a:hover {
 }
 
 .header {
+  z-index: 100;
   margin: 0;
   padding: 0;
   width: 101%;
@@ -78,6 +79,7 @@ a:hover {
 }
 
 #avatar {
+  z-index: 700;
   width: 160px;
   height: 160px;
   -webkit-border-radius: 80px;
