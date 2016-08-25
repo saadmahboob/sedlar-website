@@ -118,8 +118,6 @@ export class PortfolioComponent {
       $('li').children('a').on('mouseenter mouseleave', function (e) {
         $(this).parent().find('*').toggleClass('hover-anim')
       })
-      $('#pre-status').fadeOut()
-      $('#preloader').delay(350).fadeOut('slow')
       let avatar = '/images/avatar.jpg'
       let cover = '/images/phx-night-pano.jpg'
       // preload images
@@ -133,6 +131,10 @@ export class PortfolioComponent {
           'background-position': 'center'
         })
       })
+      let content = $('#content')
+      if (!content.is(':visible')) {
+        $('#content').fadeIn()
+      }
     })
   }
 

@@ -99,16 +99,6 @@ p.label-group {
   margin-top: -8px;
 }
 
-#preloader {
-  background: #FFFFFF;
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 9999;
-}
-
 p {
   line-height: 1.5;
 }
@@ -152,7 +142,8 @@ h1, h2, h3, h4, h5, h6, p.name, label {
   background-color: rgba(200, 200, 200, 0.5);
 }
 
-.content {
+#content {
+  display: none;
   background-color: #FFFFFF;
 }
 
