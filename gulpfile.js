@@ -11,14 +11,14 @@ var SERVER_PORT = 3000
 var RELOAD_PORT = 3010
 
 var runDefault = (cb) => runSequence(
-  'clean', ['js', 'html', 'images', 'js-deps', 'css-deps', 'font-deps', 'sass'], 'angular-bundle', cb
+  'clean', ['js', 'html', 'images', 'static', 'js-deps', 'css-deps', 'font-deps', 'sass'], 'angular-bundle', cb
 )
 
 gulp.task('default', runDefault)
 
 // runs a live-reload server
 gulp.task('dev', () => runDefault(() => { // first () => is required to find gulp tasks from runDefault
-  var server = require('./server-middleware.js')
+  var server = require('./server-middleware')
   server.listen(SERVER_PORT)
   console.log(`listening on port ${SERVER_PORT}`)
   reloader = require('tiny-lr')()
@@ -49,6 +49,12 @@ gulp.task('html', () => {
 gulp.task('images', () => {
   return gulp.src('./src/public/images/**')
     .pipe(gulp.dest('./dist/public/images'))
+})
+
+// move static files
+gulp.task('static', () => {
+  return gulp.src('./src/public/static/**')
+    .pipe(gulp.dest('./dist/public/static'))
 })
 
 // transpile & move scss

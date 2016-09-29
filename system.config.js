@@ -6,28 +6,31 @@ System.config({
   },
   packages: {
     '@angular/core': {
-      main: 'bundles/core.umd.min.js'
+      main: 'bundles/core.umd.js'
     },
     '@angular/compiler': {
-      main: 'bundles/compiler.umd.min.js'
+      main: 'bundles/compiler.umd.js'
     },
     '@angular/common': {
-      main: 'bundles/common.umd.min.js'
+      main: 'bundles/common.umd.js'
     },
     '@angular/platform-browser': {
-      main: 'bundles/platform-browser.umd.min.js'
+      main: 'bundles/platform-browser.umd.js'
     },
     '@angular/platform-browser-dynamic': {
-      main: 'bundles/platform-browser-dynamic.umd.min.js'
+      main: 'bundles/platform-browser-dynamic.umd.js'
+    },
+    '@angular/platform-server': {
+      main: 'bundles/platform-server.umd.js'
     },
     '@angular/router': {
       main: 'index.js'
     },
     '@angular/http': {
-      main: 'bundles/http.umd.min.js'
+      main: 'bundles/http.umd.js'
     },
     '@angular/forms': {
-      main: 'bundles/forms.umd.min.js'
+      main: 'bundles/forms.umd.js'
     },
     'rxjs': {
       main: 'Rx'

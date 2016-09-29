@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "gulp",
-    "start": "concurrently --kill-others --raw 'gulp dev' 'node git-stat.js'"
+    "start": "concurrently --kill-others --raw \"gulp dev\" \"node git-stat.js\""
   },
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "cron": "^1.1.0",
     "express": "^4.14.0",
     "font-awesome": "^4.6.3",
-    "github-scraper-js": "0.0.2",
+    "github-scraper-js": "0.0.3",
     "jquery": "^3.1.0",
     "mongoose": "^4.5.9",
     "node-cron": "^1.1.1",
