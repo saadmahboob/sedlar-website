@@ -3,10 +3,20 @@ const Objects = require('small-node-collections').Objects
 
 const CronJob = require('cron').CronJob
 const fs = require('fs')
+const mkdirp = require('mkdirp')
+
+const CONFIG_FILE = './github.config.json'
 
 const writeGitJSON = (config) => {
   let json = JSON.parse(fs.readFileSync(config, 'UTF8'))
   let jsonFile = json.target_file
+  if (fs.existsSync(jsonFile)) {
+    fs.unlinkSync(jsonFile)
+  }
+  let dir = jsonFile.substring(0, jsonFile.lastIndexOf('/'))
+  if (!fs.existsSync(dir)) {
+    mkdirp.sync(dir)
+  }
   let hub = GitHub.fromJSON(json)
   return hub.parseUserRepositories()
     .then(userJSON => {
@@ -24,8 +34,16 @@ const writeGitJSON = (config) => {
     })
 }
 
-new CronJob('00 00 * * *', () => {
-  writeGitJSON('./github.config.json')
-  .then(() => console.log('Updated github.json'))
-  .catch(err => console.log('Failed to write github.json', err))
-}, null, false, 'America/Phoenix', this, true).start()
+let run = () => {
+  writeGitJSON(CONFIG_FILE)
+    .then(() => console.log('Updated github.json'))
+    .catch(err => console.log('Failed to write github.json', err))
+}
+
+if (process.env.APP_ENVIRONMENT === 'production') {
+  new CronJob('00 00 * * *', () => {
+    run()
+  }, null, false, 'America/Phoenix', this, true).start()
+} else {
+  run()
+}

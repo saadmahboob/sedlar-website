@@ -42,3 +42,7 @@ jspm_packages
 
 # Project specifics
 github.config.json
+/dist/
+/node_modules/
+/typings/
+/.idea/

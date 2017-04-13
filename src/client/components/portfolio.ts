@@ -3,9 +3,24 @@ import { Http } from '@angular/http'
 
 import 'rxjs/add/operator/map'
 
+@Component({
+  selector: 'app',
+  template: require('../templates/portfolio.html'),
+  styles: [
+    require('../styles/portfolio.scss'),
+    require('../styles/timeline.scss')
+  ]
+})
 export class PortfolioComponent {
 
-  constructor (http) {
+  http: Http
+  people: any
+  jobs: any
+  organizations: any
+  httpSub: any
+
+  constructor (http: Http) {
+    this.http = http
     this.people = {
       kyle_stevenson: { name: 'Kyle Stevenson', profile: 'https://github.com/kylestev' },
       jacob_doiron: { name: 'Jacob Doiron', profile: 'https://github.com/jdoiron94' },
@@ -16,7 +31,7 @@ export class PortfolioComponent {
         name: 'Freelance',
         title: 'Software Developer',
         color: '#75BE83',
-        icon: '/images/sedlar.png',
+        icon: './static/images/sedlar.png',
         timeframe: '5/19/2014 - Current',
         tasks: [
           {
@@ -60,7 +75,7 @@ export class PortfolioComponent {
         name: 'RS-Hacking',
         title: 'Community Administrator',
         color: '#103593',
-        icon: '/images/rsh.png',
+        icon: './static/images/rsh.png',
         timeframe: '1/13/2013 - Current',
         tasks: [
           'Help manage a community that re-engineers .jar/.dex files',
@@ -71,7 +86,7 @@ export class PortfolioComponent {
         name: 'Gold4Players LLC',
         title: 'Software Developer',
         color: '#424242',
-        icon: '/images/g4p.png',
+        icon: './static/images/g4p.png',
         timeframe: '5/13/2013 - 5/17/2014',
         tasks: [
           'Wrote Java source code for a public client-sided API used for MMO automation',
@@ -83,7 +98,7 @@ export class PortfolioComponent {
         name: 'Dequeue Ltd',
         title: 'Software Developer',
         color: '#FF8E75',
-        icon: '/images/dq.png',
+        icon: './static/images/dq.png',
         timeframe: '1/13/2010 - 1/27/2013',
         tasks: [
           'Wrote multiple Java plugins used for game automation',
@@ -92,7 +107,11 @@ export class PortfolioComponent {
         ]
       }
     ]
-    http.get('/github.json')
+  }
+
+  ngOnInit () {
+    let jsonFile = (app.environment === 'development' ? '../../dist/static/github.json' : './static/github.json');
+    this.httpSub = this.http.get(jsonFile)
       .map(res => res.json())
       .subscribe(res => {
         let array = []
@@ -113,13 +132,12 @@ export class PortfolioComponent {
   }
 
   ngAfterViewInit () {
-    /* global $ Image */
     $(document).ready(function () {
       $('li').children('a').on('mouseenter mouseleave', function (e) {
         $(this).parent().find('*').toggleClass('hover-anim')
       })
-      let avatar = '/images/avatar.jpg'
-      let cover = '/images/phx-night-pano.jpg'
+      let avatar = './static/images/avatar.jpg'
+      let cover = './static/images/phx-night-pano.jpg'
       // preload images
       new Image().src = avatar
       new Image().src = cover
@@ -138,17 +156,7 @@ export class PortfolioComponent {
     })
   }
 
-  static get parameters () {
-    return [[Http]]
-  }
-
-  static get annotations () {
-    return [
-      new Component({
-        selector: 'app',
-        styleUrls: ['styles/portfolio.css', 'styles/timeline.css'],
-        templateUrl: 'templates/portfolio.html'
-      })
-    ]
+  ngOnDestroy () {
+    this.httpSub.unsubscribe()
   }
 }
